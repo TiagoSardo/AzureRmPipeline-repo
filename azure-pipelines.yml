@@ -27,4 +27,3 @@ steps:
     overrideParameters: '-test_Repos_Deloitte myarmpipeline'
     deploymentMode: 'Incremental'
     deploymentName: 'DeployPipelineTemplate'
-  displayName: 'Run a multi-line script'
