@@ -1,0 +1,2589 @@
+openapi: 3.0.1
+info:
+  title: PPL.Submissions.API
+  version: v1
+servers:
+- url: https://app-ppl-shd-uks-api-09-e2e.azurewebsites.net/api/v1
+paths:
+  '/contracts/{contractId}/submissionresponses':
+    get:
+      tags:
+        - ContractsApi
+      parameters:
+        - name: contractId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ContractParticipationResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContractParticipationResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ContractParticipationResponse'
+    put:
+      tags:
+        - ContractsApi
+      parameters:
+        - name: contractId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              type: array
+              items:
+                type: string
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+          text/json:
+            schema:
+              type: array
+              items:
+                type: string
+          application/*+json:
+            schema:
+              type: array
+              items:
+                type: string
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ContractParticipationResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContractParticipationResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ContractParticipationResponse'
+  '/placements/{placementId}/submissions':
+    get:
+      tags:
+        - Placements
+      parameters:
+        - name: placementId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PlacementSubmissionsResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlacementSubmissionsResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PlacementSubmissionsResponse'
+  '/Sections/{sectionId}/submissionresponses/{participationKey}':
+    get:
+      tags:
+        - Sections
+      parameters:
+        - name: sectionId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: participationKey
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: requestOriginal
+          in: query
+          schema:
+            type: boolean
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SectionSubmissionResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SectionSubmissionResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SectionSubmissionResponse'
+  '/Sections/{sectionId}/submissionresponses':
+    post:
+      tags:
+        - Sections
+      parameters:
+        - name: sectionId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/PostParticipationRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostParticipationRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PostParticipationRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PostParticipationRequest'
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '201':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SectionSubmissionResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SectionSubmissionResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SectionSubmissionResponse'
+    get:
+      tags:
+        - Sections
+      parameters:
+        - name: sectionId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/UnderwritersParticipationWrittenResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnderwritersParticipationWrittenResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/UnderwritersParticipationWrittenResponse'
+    put:
+      tags:
+        - Sections
+      parameters:
+        - name: sectionId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/SignAndClosedValuesRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignAndClosedValuesRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SignAndClosedValuesRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SignAndClosedValuesRequest'
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '201':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/UnderwritersParticipationWrittenResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnderwritersParticipationWrittenResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/UnderwritersParticipationWrittenResponse'
+  '/Sections/{sectionId}/submissionresponses/{participationId}':
+    delete:
+      tags:
+        - Sections
+      parameters:
+        - name: sectionId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: participationId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '200':
+          description: Success
+  /submissionPacks:
+    post:
+        tags:
+          - SubmissionPacks
+        requestBody:
+          content:
+            application/json-patch+json:
+              schema:
+                $ref: '#/components/schemas/SubmissionPackPostRequest'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubmissionPackPostRequest'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SubmissionPackPostRequest'
+            application/*+json:
+              schema:
+                $ref: '#/components/schemas/SubmissionPackPostRequest'
+          required: true
+        responses:
+          '201':
+            description: Success
+            content:
+              text/plain:
+                schema:
+                  $ref: '#/components/schemas/SimpleSubmissionPacksResponseDto'
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/SimpleSubmissionPacksResponseDto'
+              text/json:
+                schema:
+                  $ref: '#/components/schemas/SimpleSubmissionPacksResponseDto'
+    get:
+      tags:
+        - SubmissionPacks
+      parameters:
+        - name: page_number
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: page_size
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: IsOrderByAscending
+          in: query
+          schema:
+            type: boolean
+        - name: Filter
+          in: query
+          schema:
+            type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SubmissionPacksResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubmissionPacksResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SubmissionPacksResponseDto'
+  '/submissionPacks/{submissionPackId}':
+    get:
+      tags:
+        - SubmissionPacks
+      parameters:
+        - name: submissionPackId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SubmissionPacksFullResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubmissionPacksFullResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SubmissionPacksFullResponseDto'
+    put:
+      tags:
+        - SubmissionPacks
+      parameters:
+        - name: submissionPackId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/SubmissionPackPutRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubmissionPackPutRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SubmissionPackPutRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SubmissionPackPutRequest'
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SubmissionPacksFullResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubmissionPacksFullResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SubmissionPacksFullResponseDto'
+    delete:
+      tags:
+        - SubmissionPacks
+      parameters:
+        - name: submissionPackId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '200':
+          description: Success
+  '/submissionPacks/{submissionPackId}/sections/{sectionId}/participations':
+    put:
+      tags:
+        - SubmissionPacks
+      parameters:
+        - name: submissionPackId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: sectionId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/ReferenceParticipationRequestDto'
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/ReferenceParticipationRequestDto'
+          text/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/ReferenceParticipationRequestDto'
+          application/*+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/ReferenceParticipationRequestDto'
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ContentWithParticipationsDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContentWithParticipationsDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ContentWithParticipationsDto'
+  '/submissionPacks/{submissionPackId}/participations':
+    get:
+      tags:
+        - SubmissionPacks
+      parameters:
+        - name: submissionPackId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: sectionId
+          in: query
+          schema:
+            type: string
+        - name: page_number
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: page_size
+          in: query
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SubmissionPackUnderwriterResponsePaginatedResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubmissionPackUnderwriterResponsePaginatedResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SubmissionPackUnderwriterResponsePaginatedResponseDto'
+  '/submissionPacks/{submissionPackId}/underwriters/{underwriterId}/content':
+    get:
+      tags:
+        - SubmissionPacks
+      parameters:
+        - name: submissionPackId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: underwriterId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ParticipationsSubmissionPackResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParticipationsSubmissionPackResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ParticipationsSubmissionPackResponse'
+  '/submissionPacks/{submissionPackId}/submissions':
+    post:
+      tags:
+        - SubmissionPacks
+      parameters:
+        - name: submissionPackId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/SubmissionPostRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubmissionPostRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SubmissionPostRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SubmissionPostRequest'
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '201':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/UnderwriterSubmissionResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnderwriterSubmissionResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/UnderwriterSubmissionResponse'
+    get:
+      tags:
+        - SubmissionPacks
+      parameters:
+        - name: submissionPackId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/UnderwriterSubmissionsResponses'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnderwriterSubmissionsResponses'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/UnderwriterSubmissionsResponses'
+components:
+  schemas:
+    AmountResponse:
+      type: object
+      properties:
+        value:
+          type: number
+          format: double
+          nullable: true
+        comments:
+          type: array
+          items:
+            $ref: '#/components/schemas/CommentResponse'
+          nullable: true
+      additionalProperties: false
+    CommentResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        user:
+          $ref: '#/components/schemas/SimpleReferenceUserResponse'
+        datetime:
+          type: string
+          format: date-time
+        message:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ContentDto:
+      type: object
+      properties:
+        programmes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProgrammesDto'
+          nullable: true
+      additionalProperties: false
+    ContentWithParticipationsDto:
+      type: object
+      properties:
+        programmes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProgrammesWithParticipationsDto'
+          nullable: true
+      additionalProperties: false
+    ContractParticipationResponse:
+      type: object
+      properties:
+        placement_id:
+          type: string
+          nullable: true
+        placement_name:
+          type: string
+          nullable: true
+        programme_id:
+          type: string
+          nullable: true
+        programme_name:
+          type: string
+          nullable: true
+        contract_id:
+          type: string
+          nullable: true
+        contract_name:
+          type: string
+          nullable: true
+        broker_contract_ref:
+          type: string
+          nullable: true
+        submission_responses:
+          type: array
+          items:
+            $ref: '#/components/schemas/SubmissionResponse'
+          nullable: true
+      additionalProperties: false
+    ContractsDto:
+      required:
+        - id
+      type: object
+      properties:
+        id:
+          type: string
+        sections:
+          type: array
+          items:
+            $ref: '#/components/schemas/SectionsDto'
+          nullable: true
+      additionalProperties: false
+    ContractSubmissionsDto:
+      type: object
+      properties:
+        contract_id:
+          type: string
+          nullable: true
+        contract_name:
+          type: string
+          nullable: true
+        broker_contract_ref:
+          type: string
+          nullable: true
+        sections:
+          type: array
+          items:
+            $ref: '#/components/schemas/SectionSubmissionsDto'
+          nullable: true
+      additionalProperties: false
+    ContractsWithParticipationsDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        sections:
+          type: array
+          items:
+            $ref: '#/components/schemas/SectionWithParticipationDto'
+          nullable: true
+      additionalProperties: false
+    ErrorResponseDto:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          format: int32
+        message:
+          type: string
+          nullable: true
+        href:
+          type: string
+          nullable: true
+      additionalProperties: false
+    LinePercentageResponse:
+      type: object
+      properties:
+        value:
+          type: number
+          format: double
+          nullable: true
+        comments:
+          type: array
+          items:
+            $ref: '#/components/schemas/CommentResponse'
+          nullable: true
+      additionalProperties: false
+    MetaDataResponse:
+      type: object
+      properties:
+        created_date:
+          type: string
+          format: date-time
+        modified_date:
+          type: string
+          format: date-time
+      additionalProperties: false
+    ParticipantsContent:
+      type: object
+      properties:
+        programmes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ParticipantsProgrammes'
+          nullable: true
+      additionalProperties: false
+    ParticipantsContracts:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        sections:
+          type: array
+          items:
+            $ref: '#/components/schemas/ParticipantsSections'
+          nullable: true
+      additionalProperties: false
+    ParticipantsProgrammes:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        default:
+          type: boolean
+        contracts:
+          type: array
+          items:
+            $ref: '#/components/schemas/ParticipantsContracts'
+          nullable: true
+      additionalProperties: false
+    ParticipantsSections:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        default:
+          type: boolean
+        personal_message:
+          type: string
+          nullable: true
+        roles:
+          type: array
+          items:
+            type: string
+          nullable: true
+      additionalProperties: false
+    ParticipationLineConditionResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        status:
+          type: string
+          nullable: true
+        comments:
+          type: array
+          items:
+            $ref: '#/components/schemas/CommentResponse'
+          nullable: true
+      additionalProperties: false
+    ParticipationResponseDto:
+      type: object
+      properties:
+        participation_id:
+          type: string
+          nullable: true
+        submission_date:
+          type: string
+          format: date-time
+          nullable: true
+        personal_message:
+          type: string
+          nullable: true
+        first_name:
+          type: string
+          nullable: true
+        last_name:
+          type: string
+          nullable: true
+        sent:
+          type: boolean
+        roles:
+          type: array
+          items:
+            type: string
+          nullable: true
+      additionalProperties: false
+    ParticipationsSubmissionPackResponse:
+      type: object
+      properties:
+        first_name:
+          type: string
+          nullable: true
+        last_name:
+          type: string
+          nullable: true
+        organisation_name:
+          type: string
+          nullable: true
+        content:
+          $ref: '#/components/schemas/ParticipantsContent'
+      additionalProperties: false
+    ParticipationWrittenStampResponse:
+      type: object
+      properties:
+        line_to_stand:
+          type: boolean
+        name:
+          type: boolean
+        proposed:
+          type: number
+          format: double
+        written:
+          type: number
+          format: double
+        calculated:
+          type: number
+          format: double
+        signed:
+          type: number
+          format: double
+      additionalProperties: false
+    PlacementSubmissionsResponse:
+      type: object
+      properties:
+        placement_id:
+          type: string
+          nullable: true
+        placement_name:
+          type: string
+          nullable: true
+        placement_status:
+          type: string
+          nullable: true
+        submission_info:
+          type: array
+          items:
+            $ref: '#/components/schemas/SubmissionInfoDto'
+          nullable: true
+      additionalProperties: false
+    PostAmountRequest:
+      required:
+        - value
+      type: object
+      properties:
+        value:
+          type: number
+          format: double
+        comments:
+          type: array
+          items:
+            $ref: '#/components/schemas/PostCommentRequest'
+          nullable: true
+      additionalProperties: false
+    PostCommentRequest:
+      required:
+        - datetime
+        - message
+        - user_id
+      type: object
+      properties:
+        user_id:
+          type: string
+        datetime:
+          type: string
+          format: date-time
+        message:
+          maxLength: 256
+          minLength: 0
+          type: string
+      additionalProperties: false
+    PostLineConditionRequest:
+      type: object
+      properties:
+        description:
+          maxLength: 50
+          minLength: 0
+          type: string
+          nullable: true
+        status:
+          type: string
+          nullable: true
+        comments:
+          type: array
+          items:
+            $ref: '#/components/schemas/PostCommentRequest'
+          nullable: true
+      additionalProperties: false
+    PostLinePercentageRequest:
+      required:
+        - value
+      type: object
+      properties:
+        value:
+          type: number
+          format: double
+        comments:
+          type: array
+          items:
+            $ref: '#/components/schemas/PostCommentRequest'
+          nullable: true
+      additionalProperties: false
+    PostParticipationRequest:
+      required:
+        - key
+      type: object
+      properties:
+        key:
+          type: string
+        is_draft:
+          type: boolean
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/PostRoleRequest'
+          nullable: true
+        written:
+          $ref: '#/components/schemas/PostWrittenRequest'
+        stamps:
+          type: array
+          items:
+            $ref: '#/components/schemas/PostStampRequest'
+          nullable: true
+        settlement:
+          $ref: '#/components/schemas/SettlementResponse'
+        status:
+          type: string
+          nullable: true
+        status_reason:
+          type: string
+          nullable: true
+        subjectivities:
+          type: array
+          items:
+            $ref: '#/components/schemas/PostSubjectivityRequest'
+          nullable: true
+        comment:
+          $ref: '#/components/schemas/PostCommentRequest'
+      additionalProperties: false
+    PostReferenceRequest:
+      type: object
+      properties:
+        value:
+          maxLength: 50
+          minLength: 0
+          type: string
+          nullable: true
+        description:
+          maxLength: 50
+          minLength: 0
+          type: string
+          nullable: true
+        risk_codes:
+          type: array
+          items:
+            type: string
+          nullable: true
+      additionalProperties: false
+    PostRiskCodeRequest:
+      required:
+        - code
+        - percentage
+      type: object
+      properties:
+        code:
+          maxLength: 50
+          minLength: 0
+          type: string
+        percentage:
+          type: number
+          format: double
+      additionalProperties: false
+    PostRoleRequest:
+      required:
+        - key
+        - status
+      type: object
+      properties:
+        key:
+          type: string
+        status:
+          type: string
+        comments:
+          type: array
+          items:
+            $ref: '#/components/schemas/PostCommentRequest'
+          nullable: true
+      additionalProperties: false
+    PostStampRequest:
+      required:
+        - id
+      type: object
+      properties:
+        id:
+          type: string
+        written_line_percentage:
+          type: number
+          format: double
+          nullable: true
+        written_line_amount:
+          type: number
+          format: double
+          nullable: true
+        written_line_currency_code:
+          type: string
+          nullable: true
+        line_conditions:
+          type: array
+          items:
+            $ref: '#/components/schemas/PostLineConditionRequest'
+          nullable: true
+        references:
+          type: array
+          items:
+            $ref: '#/components/schemas/PostReferenceRequest'
+          nullable: true
+        risk_codes:
+          type: array
+          items:
+            $ref: '#/components/schemas/PostRiskCodeRequest'
+          nullable: true
+        status:
+          type: string
+          nullable: true
+        comments:
+          type: array
+          items:
+            $ref: '#/components/schemas/PostCommentRequest'
+          nullable: true
+      additionalProperties: false
+    PostSubjectivityRequest:
+      type: object
+      properties:
+        description:
+          maxLength: 256
+          minLength: 0
+          type: string
+          nullable: true
+        confirmation_required:
+          type: boolean
+          nullable: true
+        deadline:
+          type: string
+          format: date-time
+          nullable: true
+        withdrawn:
+          type: string
+          format: date-time
+          nullable: true
+        off_cover:
+          type: boolean
+          nullable: true
+        subjectivity_status:
+          type: string
+          nullable: true
+        negotiation_status:
+          type: string
+          nullable: true
+        comments:
+          type: array
+          items:
+            $ref: '#/components/schemas/PostCommentRequest'
+          nullable: true
+      additionalProperties: false
+    PostWrittenRequest:
+      required:
+        - datetime
+        - status
+      type: object
+      properties:
+        line_percentage:
+          $ref: '#/components/schemas/PostLinePercentageRequest'
+        amount:
+          $ref: '#/components/schemas/PostAmountRequest'
+        currency_code:
+          type: string
+          nullable: true
+        datetime:
+          type: string
+          format: date-time
+        status:
+          type: string
+      additionalProperties: false
+    ProgrammesDto:
+      required:
+        - id
+      type: object
+      properties:
+        id:
+          type: string
+        contracts:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContractsDto'
+          nullable: true
+      additionalProperties: false
+    ProgrammesWithParticipationsDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        default:
+          type: boolean
+        contracts:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContractsWithParticipationsDto'
+          nullable: true
+      additionalProperties: false
+    ProposalResponse:
+      type: object
+      properties:
+        line_percentage_min:
+          type: number
+          format: double
+          nullable: true
+        line_percentage_max:
+          type: number
+          format: double
+          nullable: true
+        line_percentage:
+          type: number
+          format: double
+          nullable: true
+        amount_min:
+          type: number
+          format: double
+          nullable: true
+        amount_max:
+          type: number
+          format: double
+          nullable: true
+        amount:
+          type: number
+          format: double
+          nullable: true
+        currency_code:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ReferenceParticipationRequestDto:
+      required:
+        - participation_id
+      type: object
+      properties:
+        participation_id:
+          type: string
+        personal_message:
+          maxLength: 256
+          minLength: 0
+          type: string
+          nullable: true
+      additionalProperties: false
+    ReferenceResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        value:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        risk_codes:
+          type: array
+          items:
+            type: string
+          nullable: true
+      additionalProperties: false
+    RiskCodeResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        code:
+          type: string
+          nullable: true
+        percentage:
+          type: number
+          format: double
+          nullable: true
+      additionalProperties: false
+    RoleResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        key:
+          type: string
+          nullable: true
+        status:
+          type: string
+          nullable: true
+        comments:
+          type: array
+          items:
+            $ref: '#/components/schemas/CommentResponse'
+          nullable: true
+      additionalProperties: false
+    SectionsDto:
+      required:
+        - id
+      type: object
+      properties:
+        id:
+          type: string
+      additionalProperties: false
+    SectionSubmissionResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        key:
+          type: string
+          nullable: true
+        placement_name:
+          type: string
+          nullable: true
+        programme_name:
+          type: string
+          nullable: true
+        contract_name:
+          type: string
+          nullable: true
+        broker_contract_ref:
+          type: string
+          nullable: true
+        section_name:
+          type: string
+          nullable: true
+        section_reference:
+          type: string
+          nullable: true
+        submission_pack_name:
+          type: string
+          nullable: true
+        is_draft:
+          type: boolean
+        user:
+          $ref: '#/components/schemas/SimpleReferenceUserResponse'
+        sent_by:
+          type: string
+          nullable: true
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/RoleResponse'
+          nullable: true
+        leader:
+          $ref: '#/components/schemas/SimpleReferenceUserWithRolesResponse'
+        written_line_basis:
+          type: string
+          nullable: true
+        proposed:
+          $ref: '#/components/schemas/ProposalResponse'
+        written:
+          $ref: '#/components/schemas/WrittenResponse'
+        stamps:
+          type: array
+          items:
+            $ref: '#/components/schemas/StampResponse'
+          nullable: true
+        settlement:
+          $ref: '#/components/schemas/SettlementResponse'
+        subjectivities:
+          type: array
+          items:
+            $ref: '#/components/schemas/SubjectivityResponse'
+          nullable: true
+        status:
+          type: string
+          nullable: true
+        status_reason:
+          type: string
+          nullable: true
+        comment:
+          $ref: '#/components/schemas/CommentResponse'
+      additionalProperties: false
+    SectionSubmissionsDto:
+      type: object
+      properties:
+        section_id:
+          type: string
+          nullable: true
+        section_name:
+          type: string
+          nullable: true
+        section_reference:
+          type: string
+          nullable: true
+        default:
+          type: boolean
+        personal_message:
+          type: string
+          nullable: true
+        participation_key:
+          type: string
+          nullable: true
+      additionalProperties: false
+    SectionWithParticipationDto:
+      type: object
+      properties:
+        participations:
+          type: array
+          items:
+            $ref: '#/components/schemas/ParticipationResponseDto'
+          nullable: true
+        id:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        default:
+          type: boolean
+      additionalProperties: false
+    SettlementResponse:
+      type: object
+      properties:
+        years_of_account:
+          type: integer
+          format: int32
+          nullable: true
+        due_date:
+          type: string
+          format: date-time
+          nullable: true
+        instalment_credit_period_days:
+          type: integer
+          format: int32
+          nullable: true
+        adjustment_credit_period_days:
+          type: integer
+          format: int32
+          nullable: true
+      additionalProperties: false
+    SignAndClosedUnderwriters:
+      type: object
+      properties:
+        user_id:
+          type: string
+          nullable: true
+        stamps:
+          type: array
+          items:
+            $ref: '#/components/schemas/SignandCloseStampRequest'
+          nullable: true
+      additionalProperties: false
+    SignAndClosedValuesRequest:
+      type: object
+      properties:
+        total_written:
+          type: number
+          format: double
+        written_basis:
+          type: string
+          nullable: true
+        signed_basis:
+          type: string
+          nullable: true
+        order:
+          type: number
+          format: double
+        calculation_decimal_places:
+          type: integer
+          format: int32
+        underwriters:
+          type: array
+          items:
+            $ref: '#/components/schemas/SignAndClosedUnderwriters'
+          nullable: true
+        is_signed_and_closed:
+          type: boolean
+      additionalProperties: false
+    SignandCloseStampRequest:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        is_lts_or_manual:
+          type: boolean
+        value:
+          type: number
+          format: double
+      additionalProperties: false
+    SimpleReferenceUserResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        first_name:
+          type: string
+          nullable: true
+        last_name:
+          type: string
+          nullable: true
+      additionalProperties: false
+    SimpleReferenceUserWithRolesResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        first_name:
+          type: string
+          nullable: true
+        last_name:
+          type: string
+          nullable: true
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/RoleResponse'
+          nullable: true
+      additionalProperties: false
+    SimpleSubmissionPacksResponseDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        type:
+          type: string
+          nullable: true
+        status:
+          type: string
+          nullable: true
+        placement_id:
+          type: string
+          nullable: true
+        metadata:
+          $ref: '#/components/schemas/MetaDataResponse'
+      additionalProperties: false
+    StampResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        stamp_type_code:
+          type: string
+          nullable: true
+        written_line_percentage:
+          type: number
+          format: double
+          nullable: true
+        written_line_amount:
+          type: number
+          format: double
+          nullable: true
+        written_line_currency_code:
+          type: string
+          nullable: true
+        line_conditions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ParticipationLineConditionResponse'
+          nullable: true
+        references:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReferenceResponse'
+          nullable: true
+        risk_codes:
+          type: array
+          items:
+            $ref: '#/components/schemas/RiskCodeResponse'
+          nullable: true
+        status:
+          type: string
+          nullable: true
+        comments:
+          type: array
+          items:
+            $ref: '#/components/schemas/CommentResponse'
+          nullable: true
+      additionalProperties: false
+    SubjectivityResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        confirmation_required:
+          type: boolean
+          nullable: true
+        deadline:
+          type: string
+          format: date-time
+          nullable: true
+        withdrawn:
+          type: string
+          format: date-time
+          nullable: true
+        off_cover:
+          type: boolean
+          nullable: true
+        subjectivity_status:
+          type: string
+          nullable: true
+        negotiation_status:
+          type: string
+          nullable: true
+        comments:
+          type: array
+          items:
+            $ref: '#/components/schemas/CommentResponse'
+          nullable: true
+      additionalProperties: false
+    SubmissionInfoDto:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        type:
+          type: string
+          nullable: true
+        general_message:
+          type: string
+          nullable: true
+        submission_date:
+          type: string
+          format: date-time
+        contracts:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContractSubmissionsDto'
+          nullable: true
+      additionalProperties: false
+    SubmissionPackPostRequest:
+      required:
+        - name
+        - placement_id
+        - type
+      type: object
+      properties:
+        type:
+          type: string
+        name:
+          maxLength: 50
+          minLength: 0
+          type: string
+        placement_id:
+          type: string
+      additionalProperties: false
+    SubmissionPackPutRequest:
+      required:
+        - content
+      type: object
+      properties:
+        content:
+          $ref: '#/components/schemas/ContentDto'
+      additionalProperties: false
+    SubmissionPacksFullResponseDto:
+      type: object
+      properties:
+        content:
+          $ref: '#/components/schemas/ContentWithParticipationsDto'
+        id:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        type:
+          type: string
+          nullable: true
+        status:
+          type: string
+          nullable: true
+        placement_id:
+          type: string
+          nullable: true
+        metadata:
+          $ref: '#/components/schemas/MetaDataResponse'
+      additionalProperties: false
+    SubmissionPacksResponseDto:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/SimpleSubmissionPacksResponseDto'
+          nullable: true
+        page_number:
+          type: integer
+          format: int32
+        page_size:
+          type: integer
+          format: int32
+        total_results:
+          type: integer
+          format: int32
+        request_uri:
+          type: string
+          nullable: true
+      additionalProperties: false
+    SubmissionPackUnderwriterResponse:
+      type: object
+      properties:
+        underwriter_id:
+          type: string
+          nullable: true
+        first_name:
+          type: string
+          nullable: true
+        last_name:
+          type: string
+          nullable: true
+        organisation_name:
+          type: string
+          nullable: true
+        participations:
+          type: array
+          items:
+            $ref: '#/components/schemas/SubmissionParticipationResponseDto'
+          nullable: true
+      additionalProperties: false
+    SubmissionPackUnderwriterResponsePaginatedResponseDto:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/SubmissionPackUnderwriterResponse'
+          nullable: true
+        page_number:
+          type: integer
+          format: int32
+        page_size:
+          type: integer
+          format: int32
+        total_results:
+          type: integer
+          format: int32
+        request_uri:
+          type: string
+          nullable: true
+      additionalProperties: false
+    SubmissionParticipationResponseDto:
+      type: object
+      properties:
+        participation_id:
+          type: string
+          nullable: true
+        personal_message:
+          type: string
+          nullable: true
+        sent:
+          type: boolean
+        roles:
+          type: array
+          items:
+            type: string
+          nullable: true
+      additionalProperties: false
+    SubmissionPostRequest:
+      required:
+        - general_message
+      type: object
+      properties:
+        participations:
+          type: array
+          items:
+            type: string
+          nullable: true
+        general_message:
+          maxLength: 256
+          minLength: 0
+          type: string
+      additionalProperties: false
+    SubmissionResponse:
+      type: object
+      properties:
+        section_id:
+          type: string
+          nullable: true
+        section_name:
+          type: string
+          nullable: true
+        section_reference:
+          type: string
+          nullable: true
+        section_default:
+          type: boolean
+        participation_id:
+          type: string
+          nullable: true
+        participation_key:
+          type: string
+          nullable: true
+        proposed_roles:
+          type: array
+          items:
+            type: string
+          nullable: true
+        written_line:
+          $ref: '#/components/schemas/WrittenResponse'
+        status:
+          type: string
+          nullable: true
+      additionalProperties: false
+    UnderwriterParticipationWrittenResponse:
+      type: object
+      properties:
+        organisation_name:
+          type: string
+          nullable: true
+        has_line_condition:
+          type: boolean
+        has_subjectivity:
+          type: boolean
+        stamps:
+          type: array
+          items:
+            $ref: '#/components/schemas/ParticipationWrittenStampResponse'
+          nullable: true
+        is_leader:
+          type: boolean
+        id:
+          type: string
+          nullable: true
+        first_name:
+          type: string
+          nullable: true
+        last_name:
+          type: string
+          nullable: true
+      additionalProperties: false
+    UnderwritersParticipationWrittenResponse:
+      type: object
+      properties:
+        written_line_basis:
+          type: string
+          nullable: true
+        written_line_percentage:
+          type: number
+          format: double
+        proposed:
+          type: number
+          format: double
+        written:
+          type: number
+          format: double
+        calculated:
+          type: number
+          format: double
+        signed:
+          type: number
+          format: double
+        underwriters:
+          type: array
+          items:
+            $ref: '#/components/schemas/UnderwriterParticipationWrittenResponse'
+          nullable: true
+      additionalProperties: false
+    UnderwriterSubmissionResponse:
+      type: object
+      properties:
+        general_message:
+          type: string
+          nullable: true
+        submission_date:
+          type: string
+          format: date-time
+          nullable: true
+        broker_first_name:
+          type: string
+          nullable: true
+        broker_last_name:
+          type: string
+          nullable: true
+        underwriters:
+          type: array
+          items:
+            $ref: '#/components/schemas/SubmissionPackUnderwriterResponse'
+          nullable: true
+      additionalProperties: false
+    UnderwriterSubmissionsResponses:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/UnderwriterSubmissionResponse'
+          nullable: true
+      additionalProperties: false
+    WrittenResponse:
+      type: object
+      properties:
+        line_percentage:
+          $ref: '#/components/schemas/LinePercentageResponse'
+        amount:
+          $ref: '#/components/schemas/AmountResponse'
+        currency_code:
+          type: string
+          nullable: true
+        datetime:
+          type: string
+          format: date-time
+          nullable: true
+        status:
+          type: string
+          nullable: true
+      additionalProperties: false
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: "JWT Authorization header using the Bearer scheme. \\r\\n\\r\\n \r\n                      Enter 'Bearer' [space] and then your token in the text input below.\r\n                      \\r\\n\\r\\nExample: 'Bearer 12345abcdef'"
+      name: Authorization
+      in: header
